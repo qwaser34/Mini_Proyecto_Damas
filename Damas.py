@@ -109,22 +109,22 @@ class PiesesWhiteBlack(DamasChinas):
                 if(i == 8 and j == 8):
                     self.Board[i][j] = self.Pb
 
-def movimiento(self, RPcurrent,CPcurrent,RPlate,CPlate):
+    def movimiento(self, RPcurrent,CPcurrent,RPlate,CPlate):
         self.RPcurrent = RPcurrent
         self.CPcurrent = CPcurrent
         self.RPlate = RPlate
         self.CPlate = CPlate
     
         if(self.Board[RPcurrent][CPcurrent] == self.Pw):
-            if(self.Board[RPlate][CPlate] != ' '):
-
-                self.Board[RPcurrent][CPcurrent] = ' '
-                self.Board[RPlate][CPlate] = self.Pw
-                
-
-            
-            else:
+            if(self.RPlate%2 != 0 and self.CPlate%2 == 0 or self.RPlate%2 == 0 and self.CPlate%2 != 0):
                 self.Board[RPcurrent][CPcurrent] = self.Pw
+                self.Board[RPlate][CPlate] = '⬜'
+            else:    
+                if(self.Board[RPlate][CPlate] != ' '):
+                    self.Board[RPcurrent][CPcurrent] = ' '
+                    self.Board[RPlate][CPlate] = self.Pw
+                else:
+                    self.Board[RPcurrent][CPcurrent] = self.Pw
 
     def pre(self):
         super().state()
