@@ -109,6 +109,23 @@ class PiesesWhiteBlack(DamasChinas):
                 if(i == 8 and j == 8):
                     self.Board[i][j] = self.Pb
 
+def movimiento(self, RPcurrent,CPcurrent,RPlate,CPlate):
+        self.RPcurrent = RPcurrent
+        self.CPcurrent = CPcurrent
+        self.RPlate = RPlate
+        self.CPlate = CPlate
+    
+        if(self.Board[RPcurrent][CPcurrent] == self.Pw):
+            if(self.Board[RPlate][CPlate] != ' '):
+
+                self.Board[RPcurrent][CPcurrent] = ' '
+                self.Board[RPlate][CPlate] = self.Pw
+                
+
+            
+            else:
+                self.Board[RPcurrent][CPcurrent] = self.Pw
+
     def pre(self):
         super().state()
 
@@ -117,3 +134,13 @@ class PiesesWhiteBlack(DamasChinas):
 LPiesesWB = PiesesWhiteBlack([])
 LPiesesWB.PiesesWB('W','B')
 LPiesesWB.state()
+
+print("\n")
+while(True):
+    RPcurrent = int(input("Introduzca Fila de piesa que quieres mover: "))
+    CPcurrent = int(input("Introduzca Columna de pieza que quieres mover: "))
+    RPlate = int(input("Introduzca Fila de pieza donde la movera: "))
+    CPlate = int(input("Introduzca Columna de pieza donde la movera: "))
+
+    LPiesesWB.movimiento(RPcurrent,CPcurrent,RPlate,CPlate)
+    LPiesesWB.pre()
