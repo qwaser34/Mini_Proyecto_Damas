@@ -48,7 +48,72 @@ class DamasChinas:
         for x in self.Board:
             print(x)
 
+class PiesesWhiteBlack(DamasChinas):
+
+    def PiesesWB(self,Pw,Pb):
+        self.Pw = Pw
+        self.Pb = Pb
+        for i in range(0,9):
+            for j in range(0,9):
+                if(i == 1 and j == 1):
+                    self.Board[i][j] = self.Pw
+                if(i == 1 and j == 3):
+                    self.Board[i][j] = self.Pw
+                if(i == 1 and j == 5):
+                    self.Board[i][j] = self.Pw
+                if(i == 1 and j == 7):
+                    self.Board[i][j] = self.Pw
+
+                if(i == 2 and j == 2):
+                    self.Board[i][j] = self.Pw
+                if(i == 2 and j == 4):
+                    self.Board[i][j] = self.Pw
+                if(i == 2 and j == 6):
+                    self.Board[i][j] = self.Pw
+                if(i == 2 and j == 8):
+                    self.Board[i][j] = self.Pw
+
+                if(i == 3 and j == 1):
+                    self.Board[i][j] = self.Pw
+                if(i == 3 and j == 3):
+                    self.Board[i][j] = self.Pw
+                if(i == 3 and j == 5):
+                    self.Board[i][j] = self.Pw
+                if(i == 3 and j == 7):
+                    self.Board[i][j] = self.Pw
+
+                if(i == 6 and j == 2):
+                    self.Board[i][j] = self.Pb
+                if(i == 6 and j == 4):
+                    self.Board[i][j] = self.Pb
+                if(i == 6 and j == 6):
+                    self.Board[i][j] = self.Pb
+                if(i == 6 and j == 8):
+                    self.Board[i][j] = self.Pb
+
+                if(i == 7 and j == 1):
+                    self.Board[i][j] = self.Pb
+                if(i == 7 and j == 3):
+                    self.Board[i][j] = self.Pb
+                if(i == 7 and j == 5):
+                    self.Board[i][j] = self.Pb
+                if(i == 7 and j == 7):
+                    self.Board[i][j] = self.Pb
+
+                if(i == 8 and j == 2):
+                    self.Board[i][j] = self.Pb
+                if(i == 8 and j == 4):
+                    self.Board[i][j] = self.Pb
+                if(i == 8 and j == 6):
+                    self.Board[i][j] = self.Pb
+                if(i == 8 and j == 8):
+                    self.Board[i][j] = self.Pb
+
+    def pre(self):
+        super().state()
 
 
-FirstBoard = DamasChinas([])
-FirstBoard.state()
+
+LPiesesWB = PiesesWhiteBlack([])
+LPiesesWB.PiesesWB('W','B')
+LPiesesWB.state()
