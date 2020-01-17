@@ -109,6 +109,10 @@ class PiesesWhiteBlack(DamasChinas):
                 if(i == 8 and j == 8):
                     self.Board[i][j] = self.Pb
 
+
+
+
+
     def movimiento(self, RPcurrent,CPcurrent,RPlate,CPlate):
         self.RPcurrent = RPcurrent
         self.CPcurrent = CPcurrent
@@ -126,10 +130,35 @@ class PiesesWhiteBlack(DamasChinas):
                 else:
                     self.Board[RPcurrent][CPcurrent] = self.Pw
 
+        else:
+            if(self.RPlate%2 != 0 and self.CPlate%2 == 0 or self.RPlate%2 == 0 and self.CPlate%2 != 0):
+                self.Board[RPcurrent][CPcurrent] = self.Pb
+                self.Board[RPlate][CPlate] = '⬜'
+            else:    
+                if(self.Board[RPlate][CPlate] != ' '):
+                    self.Board[RPcurrent][CPcurrent] = ' '
+                    self.Board[RPlate][CPlate] = self.Pb
+                else:
+                    self.Board[RPcurrent][CPcurrent] = self.Pb
+
+        
+    def players (self, player1, player2,turn):
+        self.player1 = player1
+        self.player2 = player2
+        self.turn = turn
+
+        self.turn = True
+        if(self.turn == True):
+            self.player1 = self.Board[RPcurrent][CPcurrent]
+            self.player1 = self.Board[RPlate][CPlate]
+            self.turn = False
+        else:
+            self.player2 = self.Board[RPcurrent][CPcurrent]
+            self.player2 = self.Board[RPlate][CPlate]
+            self.turn = True
+
     def pre(self):
         super().state()
-
-
 
 LPiesesWB = PiesesWhiteBlack([])
 LPiesesWB.PiesesWB('W','B')
@@ -137,6 +166,7 @@ LPiesesWB.state()
 
 print("\n")
 while(True):
+    print('Jose jugando:\n')
     RPcurrent = int(input("Introduzca Fila de piesa que quieres mover: "))
     CPcurrent = int(input("Introduzca Columna de pieza que quieres mover: "))
     RPlate = int(input("Introduzca Fila de pieza donde la movera: "))
