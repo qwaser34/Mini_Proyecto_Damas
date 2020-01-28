@@ -59,138 +59,140 @@ class DamasChinas:
 
 class PiesesWhiteBlack(DamasChinas):
 
-    def PiesesWB(self,Pw,Pb):
-        self.Pw = Pw
-        self.Pb = Pb
+    def InitialPositionForPieses(self,Pieses_White,Pieses_Black):
+        self.Pieses_White = Pieses_White
+        self.Pieses_Black = Pieses_Black
         for i in range(0,9):
             for j in range(0,9):
                 if(i == 1 and j == 1):
-                    self.Board[i][j] = self.Pw
+                    self.Board[i][j] = self.Pieses_White
                 if(i == 1 and j == 3):
-                    self.Board[i][j] = self.Pw
+                    self.Board[i][j] = self.Pieses_White
                 if(i == 1 and j == 5):
-                    self.Board[i][j] = self.Pw
+                    self.Board[i][j] = self.Pieses_White
                 if(i == 1 and j == 7):
-                    self.Board[i][j] = self.Pw
+                    self.Board[i][j] = self.Pieses_White
 
                 if(i == 2 and j == 2):
-                    self.Board[i][j] = self.Pw
+                    self.Board[i][j] = self.Pieses_White
                 if(i == 2 and j == 4):
-                    self.Board[i][j] = self.Pw
+                    self.Board[i][j] = self.Pieses_White
                 if(i == 2 and j == 6):
-                    self.Board[i][j] = self.Pw
+                    self.Board[i][j] = self.Pieses_White
                 if(i == 2 and j == 8):
-                    self.Board[i][j] = self.Pw
+                    self.Board[i][j] = self.Pieses_White
 
                 if(i == 3 and j == 1):
-                    self.Board[i][j] = self.Pw
+                    self.Board[i][j] = self.Pieses_White
                 if(i == 3 and j == 3):
-                    self.Board[i][j] = self.Pw
+                    self.Board[i][j] = self.Pieses_White
                 if(i == 3 and j == 5):
-                    self.Board[i][j] = self.Pw
+                    self.Board[i][j] = self.Pieses_White
                 if(i == 3 and j == 7):
-                    self.Board[i][j] = self.Pw
+                    self.Board[i][j] = self.Pieses_White
 
                 if(i == 6 and j == 2):
-                    self.Board[i][j] = self.Pb
+                    self.Board[i][j] = self.Pieses_Black
                 if(i == 6 and j == 4):
-                    self.Board[i][j] = self.Pb
+                    self.Board[i][j] = self.Pieses_Black
                 if(i == 6 and j == 6):
-                    self.Board[i][j] = self.Pb
+                    self.Board[i][j] = self.Pieses_Black
                 if(i == 6 and j == 8):
-                    self.Board[i][j] = self.Pb
+                    self.Board[i][j] = self.Pieses_Black
 
                 if(i == 7 and j == 1):
-                    self.Board[i][j] = self.Pb
+                    self.Board[i][j] = self.Pieses_Black
                 if(i == 7 and j == 3):
-                    self.Board[i][j] = self.Pb
+                    self.Board[i][j] = self.Pieses_Black
                 if(i == 7 and j == 5):
-                    self.Board[i][j] = self.Pb
+                    self.Board[i][j] = self.Pieses_Black
                 if(i == 7 and j == 7):
-                    self.Board[i][j] = self.Pb
+                    self.Board[i][j] = self.Pieses_Black
 
                 if(i == 8 and j == 2):
-                    self.Board[i][j] = self.Pb
+                    self.Board[i][j] = self.Pieses_Black
                 if(i == 8 and j == 4):
-                    self.Board[i][j] = self.Pb
+                    self.Board[i][j] = self.Pieses_Black
                 if(i == 8 and j == 6):
-                    self.Board[i][j] = self.Pb
+                    self.Board[i][j] = self.Pieses_Black
                 if(i == 8 and j == 8):
-                    self.Board[i][j] = self.Pb
+                    self.Board[i][j] = self.Pieses_Black
 
-    def movimiento(self, RPcurrent,CPcurrent,RPlate,CPlate,ficha,turn):
-        self.RPcurrent = RPcurrent
-        self.CPcurrent = CPcurrent
-        self.RPlate = RPlate
-        self.CPlate = CPlate
-        self.ficha = ficha
+    def movement(self, Raw_Postion_current,Column_Postion_current,Raw_Postion_Late,Column_Postion_Late,Player,turn):
+        self.Raw_Postion_current = Raw_Postion_current
+        self.Column_Postion_current = Column_Postion_current
+        self.Raw_Postion_Late = Raw_Postion_Late
+        self.Column_Postion_Late = Column_Postion_Late
+        self.Player = Player
          
         if(turn):
             
-            if(self.RPlate%2 != 0 and self.CPlate%2 == 0 or self.RPlate%2 == 0 and self.CPlate%2 != 0):
-                self.Board[RPcurrent][CPcurrent] = self.Pw
-                self.Board[RPlate][CPlate] = '⬜'
+            if(self.Raw_Postion_Late%2 != 0 and self.Column_Postion_Late%2 == 0 or self.Raw_Postion_Late%2 == 0 and self.Column_Postion_Late%2 != 0):
+                self.Board[Raw_Postion_current][Column_Postion_current] = self.Pieses_White
+                self.Board[Raw_Postion_Late][Column_Postion_Late] = '⬜'
             else:  
-                if(self.Board[RPlate][CPlate] != ' '):
-                    self.Board[RPcurrent][CPcurrent] = ' '
-                    self.Board[RPlate][CPlate] = self.Pw
+                if(self.Board[Raw_Postion_Late][Column_Postion_Late] != ' '):
+                    self.Board[Raw_Postion_current][Column_Postion_current] = ' '
+                    self.Board[Raw_Postion_Late][Column_Postion_Late] = self.Pieses_White
                 else:
-                    self.Board[RPcurrent][CPcurrent] = self.Pw
+                    self.Board[Raw_Postion_current][Column_Postion_current] = self.Pieses_White
 
         else:
-            if(self.RPlate%2 != 0 and self.CPlate%2 == 0 or self.RPlate%2 == 0 and self.CPlate%2 != 0):
-                self.Board[RPcurrent][CPcurrent] = self.Pb
-                self.Board[RPlate][CPlate] = '⬜'
+            if(self.Raw_Postion_Late%2 != 0 and self.Column_Postion_Late%2 == 0 or self.Raw_Postion_Late%2 == 0 and self.Column_Postion_Late%2 != 0):
+                self.Board[Raw_Postion_current][Column_Postion_current] = self.Pieses_Black
+                self.Board[Raw_Postion_Late][Column_Postion_Late] = '⬜'
             else:    
-                if(self.Board[RPlate][CPlate] != ' '):
-                    self.Board[RPcurrent][CPcurrent] = ' '
-                    self.Board[RPlate][CPlate] = self.Pb
+                if(self.Board[Raw_Postion_Late][Column_Postion_Late] != ' '):
+                    self.Board[Raw_Postion_current][Column_Postion_current] = ' '
+                    self.Board[Raw_Postion_Late][Column_Postion_Late] = self.Pieses_Black
                 else:
-                    self.Board[RPcurrent][CPcurrent] = self.Pb
+                    self.Board[Raw_Postion_current][Column_Postion_current] = self.Pieses_Black
     
     def play(self):
-        self.PiesesWB('W','B')
+        self.InitialPositionForPieses('W','B')
         self.state()
         turn = False
         while(True):
-            ficha = input("que jugador quieres ser? [J1/J2]: ")
-            if(ficha == "J1" or ficha == "j1"):
-                print("Mueves las Blancas")
+            Player = input("What player do you want to be? [White or Black]: ")
+            if(Player == "White" or Player == "white"):
+                print("You play with White")
                 turn = True
                 break
-            elif(ficha == "J2" or ficha == "j2"):
-                print("Mueves las Negras")
+            elif(Player == "Black" or Player == "black"):
+                print("You play with Black")
                 turn = False
                 break
             else:
-                print("Jugador no existe")
+                print("Error, Does not exist")
 
         i = 0
         if turn == False:
             i = 1
             
         while(True):
-            print(i)
 
-            RPcurrent = int(input("Introduzca Fila de piesa que quieres mover: "))
-            CPcurrent = int(input("Introduzca Columna de pieza que quieres mover: "))
-            RPlate = int(input("Introduzca Fila de pieza donde la movera: "))
-            CPlate = int(input("Introduzca Columna de pieza donde la movera: "))
+            Raw_Postion_current = int(input("Enter the row of the piece you want to move: "))
+            Column_Postion_current = int(input("Enter the column of the piece you want to move: "))
+            Raw_Postion_Late = int(input("Enter the row of the piece where it will move: "))
+            Column_Postion_Late = int(input("Enter the colunm of the piece where it will move: "))
             
-            if(self.Board[RPcurrent][CPcurrent] == self.Pw and turn and i%2 == 0):
-                self.movimiento(RPcurrent,CPcurrent,RPlate,CPlate,ficha,turn)
+            if(self.Board[Raw_Postion_current][Column_Postion_current] == self.Pieses_White and turn and i%2 == 0):
+                self.movement(Raw_Postion_current,Column_Postion_current,Raw_Postion_Late,Column_Postion_Late,Player,turn)
                 self.pre()
                 turn = False
+                print("shift change")
                 i += 1
             else:
-                print(self.Board[RPcurrent][CPcurrent] == self.Pb)
-                if(self.Board[RPcurrent][CPcurrent] == self.Pb and turn == False and i%2 != 0):
-                    self.movimiento(RPcurrent,CPcurrent,RPlate,CPlate,ficha,turn)
+                print(self.Board[Raw_Postion_current][Column_Postion_current] == self.Pieses_Black)
+                if(self.Board[Raw_Postion_current][Column_Postion_current] == self.Pieses_Black and turn == False and i%2 != 0):
+                    self.movement(Raw_Postion_current,Column_Postion_current,Raw_Postion_Late,Column_Postion_Late,Player,turn)
                     self.pre()
                     turn = True
+                    print("shift change")
                     i += 1
                 else:
-                    print("Movimiento Invalido")
+                    print("Invalid Movement, try again")
+
 
     def pre(self):
         super().state()
