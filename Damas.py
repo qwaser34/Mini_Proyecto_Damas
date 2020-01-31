@@ -59,9 +59,11 @@ class DamasChinas:
 
 class PiesesWhiteBlack(DamasChinas):
 
-    def InitialPositionForPieses(self,Pieses_White,Pieses_Black):
+    def InitialPositionForPieses(self,Pieses_White,Pieses_Black,Queen_Pieses_White,Queen_Pieses_Black):
         self.Pieses_White = Pieses_White
         self.Pieses_Black = Pieses_Black
+        self.Queen_Pieses_White = Queen_Pieses_White
+        self.Queen_Pieses_Black = Queen_Pieses_Black
         for i in range(0,9):
             for j in range(0,9):
                 if(i == 1 and j == 1):
@@ -149,7 +151,7 @@ class PiesesWhiteBlack(DamasChinas):
                     self.Board[Raw_Postion_Current][Column_Postion_current] = self.Pieses_Black
     
     def play(self):
-        self.InitialPositionForPieses('W','B')
+        self.InitialPositionForPieses('W','B','KW','KB')
         self.state()
         turn = False
         while(True):
@@ -164,11 +166,11 @@ class PiesesWhiteBlack(DamasChinas):
                 break
             else:
                 print("Error, Does not exist")
-
+  
         i = 0
         if turn == False:
             i = 1
-            
+
         while(True):
 
             Raw_current = input("Enter the row of the piece you want to move: ")
@@ -211,23 +213,25 @@ class PiesesWhiteBlack(DamasChinas):
             
             if(self.Board[Raw_Postion_Current][Column_Postion_current] == self.Pieses_White and turn and i%2 == 0):
                 self.movement(Raw_Postion_Current,Column_Postion_current,Raw_Postion_Late,Column_Postion_Late,Player,turn)
-                self.pre()
+                self.presentation()
                 turn = False
                 print("shift change")
+                print(self.Board[Raw_Postion_Late][Column_Postion_Late])
                 i += 1
             else:
                 print(self.Board[Raw_Postion_Current][Column_Postion_current] == self.Pieses_Black)
                 if(self.Board[Raw_Postion_Current][Column_Postion_current] == self.Pieses_Black and turn == False and i%2 != 0):
                     self.movement(Raw_Postion_Current,Column_Postion_current,Raw_Postion_Late,Column_Postion_Late,Player,turn)
-                    self.pre()
+                    self.presentation()
                     turn = True
                     print("shift change")
+                    print(self.Board[Raw_Postion_Late][Column_Postion_Late])
                     i += 1
                 else:
                     print("Invalid Movement, try again")
 
 
-    def pre(self):
+    def presentation(self):
         super().state()
 
 LPiesesWB = PiesesWhiteBlack([])
