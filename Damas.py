@@ -80,7 +80,7 @@ class PiesesWhiteBlack(DamasChinas):
                 break
             else:
                 print("Error, Does not exist")
-
+  
         i = 0
         if turn == False:
             i = 1
