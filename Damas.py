@@ -141,6 +141,12 @@ class PiesesWhiteBlack(DamasChinas):
             Column_Postion2 = Row_Late[1]
             Column_Postion_Late = letter_to_number[Column_Postion2]
 
+            Value_Row_White = (Row_Postion_Current - Row_Postion_Late)
+            # Value_Col_White = (Column_Postion_current - Column_Postion_Late)
+            Value_Row_Black = (Row_Postion_Current - Row_Postion_Late)
+            # Value_Col_Black = (Column_Postion_current - Column_Postion_Late)
+            
+            
             if(self.Board[Row_Postion_Current][Column_Postion_current] == self.Pieses_White):
 
                     # de izquierda arriba a derecha abajo 
@@ -148,7 +154,7 @@ class PiesesWhiteBlack(DamasChinas):
                     self.Board[Row_Postion_Late - 1][Column_Postion_Late - 1] = '⬛'
                     self.Board[Row_Postion_Late][Column_Postion_Late] = self.Pieses_White
                     self.Board[Row_Postion_Current][Column_Postion_current] = '⬛'
-                
+
                     # de derecha arriba a izquierda abajo
                 if(self.Board[Row_Postion_Late - 1][Column_Postion_Late + 1] == self.Pieses_Black):
                     self.Board[Row_Postion_Late - 1][Column_Postion_Late + 1] = '⬛'
@@ -167,35 +173,107 @@ class PiesesWhiteBlack(DamasChinas):
                     PiesesWhiteBlack.turn = False
                     print("shift change, Black")
 
-            else:
-                if(self.Board[Row_Postion_Current][Column_Postion_current] == self.Pieses_Black and PiesesWhiteBlack.turn == False):
+            
+            if(self.Board[Row_Postion_Current][Column_Postion_current] == self.Pieses_Black and PiesesWhiteBlack.turn == False):
 
-                        # de derecha abajo a izquierda arriba
-                    if(self.Board[Row_Postion_Late + 1][Column_Postion_Late + 1] == self.Pieses_White):
-                        self.Board[Row_Postion_Late + 1][Column_Postion_Late + 1] = '⬛'
-                        self.Board[Row_Postion_Late][Column_Postion_Late] = self.Pieses_Black
-                        self.Board[Row_Postion_Current][Column_Postion_current] = '⬛'
-                    
-                        # de izquierda abajo a derecha arriba
-                    if(self.Board[Row_Postion_Late + 1][Column_Postion_Late - 1] == self.Pieses_White):
-                        self.Board[Row_Postion_Late + 1][Column_Postion_Late - 1] = '⬛'
-                        self.Board[Row_Postion_Late][Column_Postion_Late] = self.Pieses_Black
-                        self.Board[Row_Postion_Current][Column_Postion_current] = '⬛'
+                    # de derecha abajo a izquierda arriba
+                if(self.Board[Row_Postion_Late + 1][Column_Postion_Late + 1] == self.Pieses_White):
+                    self.Board[Row_Postion_Late + 1][Column_Postion_Late + 1] = '⬛'
+                    self.Board[Row_Postion_Late][Column_Postion_Late] = self.Pieses_Black
+                    self.Board[Row_Postion_Current][Column_Postion_current] = '⬛'
+                
+                    # de izquierda abajo a derecha arriba
+                if(self.Board[Row_Postion_Late + 1][Column_Postion_Late - 1] == self.Pieses_White):
+                    self.Board[Row_Postion_Late + 1][Column_Postion_Late - 1] = '⬛'
+                    self.Board[Row_Postion_Late][Column_Postion_Late] = self.Pieses_Black
+                    self.Board[Row_Postion_Current][Column_Postion_current] = '⬛'
 
-                        os.system("cls")
-                        self.presentation()
-                        PiesesWhiteBlack.turn = True
-                        print("shift change, White")
+                    os.system("cls")
+                    self.presentation()
+                    PiesesWhiteBlack.turn = True
+                    print("shift change, White")
 
-                    else:
-                        self.movement_normal_pieses(Row_Postion_Current,Column_Postion_current,Row_Postion_Late,Column_Postion_Late,PiesesWhiteBlack.turn)
-                        os.system("cls")
-                        self.presentation()
-                        PiesesWhiteBlack.turn = True
-                        print("shift change, White")
-                        
                 else:
-                    print("Invalid Movement, try again")
+                    self.movement_normal_pieses(Row_Postion_Current,Column_Postion_current,Row_Postion_Late,Column_Postion_Late,PiesesWhiteBlack.turn)
+                    os.system("cls")
+                    self.presentation()
+                    PiesesWhiteBlack.turn = True
+                    print("shift change, White")
+
+
+            if(self.Board[Row_Postion_Current][Column_Postion_current] == self.Pieses_Queen_White):
+                    # de izquierda arriba a derecha abajo 
+                if(self.Board[Row_Postion_Late - 1][Column_Postion_Late - 1] == self.Pieses_Black or self.Board[Row_Postion_Late - 1][Column_Postion_Late - 1] == self.Pieses_Queen_Black):
+                    self.Board[Row_Postion_Late - 1][Column_Postion_Late - 1] = '⬛'
+                    self.Board[Row_Postion_Late][Column_Postion_Late] = self.Pieses_Queen_White
+                    self.Board[Row_Postion_Current][Column_Postion_current] = '⬛'
+
+                    # de derecha arriba a izquierda abajo
+                if(self.Board[Row_Postion_Late - 1][Column_Postion_Late + 1] == self.Pieses_Black or self.Board[Row_Postion_Late - 1][Column_Postion_Late + 1] == self.Pieses_Queen_Black):
+                    self.Board[Row_Postion_Late - 1][Column_Postion_Late + 1] = '⬛'
+                    self.Board[Row_Postion_Late][Column_Postion_Late] = self.Pieses_Queen_White
+                    self.Board[Row_Postion_Current][Column_Postion_current] = '⬛'
+                    # de derecha abajo a izquierda arriba
+                if(self.Board[Row_Postion_Late + 1][Column_Postion_Late + 1] == self.Pieses_Black or self.Board[Row_Postion_Late + 1][Column_Postion_Late + 1] == self.Pieses_Queen_Black):
+                    self.Board[Row_Postion_Late + 1][Column_Postion_Late + 1] = '⬛'
+                    self.Board[Row_Postion_Late][Column_Postion_Late] = self.Pieses_Queen_White
+                    self.Board[Row_Postion_Current][Column_Postion_current] = '⬛'
+                
+                    # de izquierda abajo a derecha arriba
+                if(self.Board[Row_Postion_Late + 1][Column_Postion_Late - 1] == self.Pieses_Black or self.Board[Row_Postion_Late + 1][Column_Postion_Late - 1] == self.Pieses_Queen_Black):
+                    self.Board[Row_Postion_Late + 1][Column_Postion_Late - 1] = '⬛'
+                    self.Board[Row_Postion_Late][Column_Postion_Late] = self.Pieses_Queen_White
+                    self.Board[Row_Postion_Current][Column_Postion_current] = '⬛'
+                    os.system("cls")
+                    self.presentation()
+                    PiesesWhiteBlack.turn = False
+                    print("shift change, Black")
+
+                else:
+                    self.movement_queen_pieses(Row_Postion_Current,Column_Postion_current,Row_Postion_Late,Column_Postion_Late,PiesesWhiteBlack.turn)
+                    os.system("cls")
+                    self.presentation()
+                    PiesesWhiteBlack.turn = False
+                    print("shift change, Black")
+
+                # Queen Black
+            if(self.Board[Row_Postion_Current][Column_Postion_current] == self.Pieses_Queen_Black):
+                # de izquierda arriba a derecha abajo 
+                if(self.Board[Row_Postion_Late - 1][Column_Postion_Late - 1] == self.Pieses_White or self.Board[Row_Postion_Late - 1][Column_Postion_Late - 1] == self.Pieses_Queen_White):
+                    self.Board[Row_Postion_Late - 1][Column_Postion_Late - 1] = '⬛'
+                    self.Board[Row_Postion_Late][Column_Postion_Late] = self.Pieses_Queen_Black
+                    self.Board[Row_Postion_Current][Column_Postion_current] = '⬛'
+
+                    # de derecha arriba a izquierda abajo
+                if(self.Board[Row_Postion_Late - 1][Column_Postion_Late + 1] == self.Pieses_White or self.Board[Row_Postion_Late - 1][Column_Postion_Late + 1] == self.Pieses_Queen_White):
+                    self.Board[Row_Postion_Late - 1][Column_Postion_Late + 1] = '⬛'
+                    self.Board[Row_Postion_Late][Column_Postion_Late] = self.Pieses_Queen_Black
+                    self.Board[Row_Postion_Current][Column_Postion_current] = '⬛'
+                    # de derecha abajo a izquierda arriba
+                if(self.Board[Row_Postion_Late + 1][Column_Postion_Late + 1] == self.Pieses_White or self.Board[Row_Postion_Late + 1][Column_Postion_Late + 1] == self.Pieses_Queen_White):
+                    self.Board[Row_Postion_Late + 1][Column_Postion_Late + 1] = '⬛'
+                    self.Board[Row_Postion_Late][Column_Postion_Late] = self.Pieses_Queen_Black
+                    self.Board[Row_Postion_Current][Column_Postion_current] = '⬛'
+                
+                    # de izquierda abajo a derecha arriba
+                if(self.Board[Row_Postion_Late + 1][Column_Postion_Late - 1] == self.Pieses_White or self.Board[Row_Postion_Late + 1][Column_Postion_Late - 1] == self.Pieses_Queen_White):
+                    self.Board[Row_Postion_Late + 1][Column_Postion_Late - 1] = '⬛'
+                    self.Board[Row_Postion_Late][Column_Postion_Late] = self.Pieses_Queen_Black
+                    self.Board[Row_Postion_Current][Column_Postion_current] = '⬛'
+                    os.system("cls")
+                    self.presentation()
+                    PiesesWhiteBlack.turn = True
+                    print("shift change, White")
+
+                else:
+                    self.movement_queen_pieses(Row_Postion_Current,Column_Postion_current,Row_Postion_Late,Column_Postion_Late,PiesesWhiteBlack.turn)
+                    os.system("cls")
+                    self.presentation()
+                    PiesesWhiteBlack.turn = True
+                    print("shift change, White")
+                        
+            else:
+               print("Invalid Movement, try again")
             
 
     def presentation(self):
