@@ -42,15 +42,15 @@ class PiesesWhiteBlack(DamasChinas):
             for j in range(0,9):
                 if (i == 8):
                     if(self.Board[i][j] == self.Pieses_White):
-                        self.Board[i][j] = self.Pieses_Queen_Black
+                        self.Board[i][j] = self.Pieses_Queen_White
                
                 if(i == 1):
                     if(self.Board[i][j] == self.Pieses_Black):
-                        self.Board[i][j] = self.Pieses_Queen_White
+                        self.Board[i][j] = self.Pieses_Queen_Black
 
         # if(self.Pieses_White == self.Board[8][Column_Postion_Final]):            
         #     self.Pieses_White = self.Pieses_Queen_White
-
+    
     def movement_queen_pieses(self, Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final,turn):
         self.Row_Postion_Initial = Row_Postion_Initial
         self.Column_Postion_Initial = Column_Postion_Initial
@@ -59,8 +59,12 @@ class PiesesWhiteBlack(DamasChinas):
 
         if(turn):#turn white
             # if(self.Row_Postion_Final%2 != 0 and self.Column_Postion_Final%2 == 0 or self.Row_Postion_Final%2 == 0 and self.Column_Postion_Final%2 != 0):
-            if(self.Board[Row_Postion_Final][Column_Postion_Final] == '◻'):
-                self.Board[Row_Postion_Initial][Column_Postion_Initial] = self.Pieses_Queen_White
+            if(self.Board[Row_Postion_Final][Column_Postion_Final] == '◼'):
+                self.Board[Row_Postion_Initial][Column_Postion_Initial] = '◼'
+                self.Board[Row_Postion_Final][Column_Postion_Final] = self.Pieses_Queen_White
+
+            elif(self.Board[Row_Postion_Final][Column_Postion_Final] == '◻'):
+                self.Board[Row_Postion_Initial][Column_Postion_Initial] = self.Pieses_Queen_Black
                 self.Board[Row_Postion_Final][Column_Postion_Final] = '◻'
 
             else:
@@ -69,7 +73,8 @@ class PiesesWhiteBlack(DamasChinas):
                 
 
         else: #turn Queen black
-            if(self.Row_Postion_Final%2 != 0 and self.Column_Postion_Final%2 == 0 or self.Row_Postion_Final%2 == 0 and self.Column_Postion_Final%2 != 0):
+            # if(self.Row_Postion_Final%2 != 0 and self.Column_Postion_Final%2 == 0 or self.Row_Postion_Final%2 == 0 and self.Column_Postion_Final%2 != 0):
+            if(self.Board[Row_Postion_Final][Column_Postion_Final] == '◻'):
                 self.Board[Row_Postion_Initial][Column_Postion_Initial] = self.Pieses_Queen_Black
                 self.Board[Row_Postion_Final][Column_Postion_Final] = '◻'
             else:    
@@ -134,65 +139,46 @@ class PiesesWhiteBlack(DamasChinas):
             Column_Postion2 = Row_Late[1]
             Column_Postion_Final = letter_to_number[Column_Postion2]
 
-            Value_Row_White = (Row_Postion_Initial - Row_Postion_Final)
-            Value_Col_White = (Column_Postion_Initial - Column_Postion_Final)
-            Value_Row_Black = (Row_Postion_Initial - Row_Postion_Final)
-            Value_Col_Black = (Column_Postion_Initial - Column_Postion_Final)
-            
-            if(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_White  and Value_Row_White == -1):
+            Value_Row_Pieses = (Row_Postion_Initial - Row_Postion_Final)
+            Value_Col_Pieses = (Column_Postion_Initial - Column_Postion_Final)
+       
+            if(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_White  and Value_Row_Pieses == -1):
                 self.movement_normal_pieses(Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final,PiesesWhiteBlack.turn)
                 self.Clear_changeturn()
 
             else:
-                if(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_White and Value_Row_White == -2):
-                    Value_row_int = int(Value_Row_White/2)
-                    Value_col_int = int(Value_Col_White/2)
-
+                if(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_White and Value_Row_Pieses == -2):
                     # comer
-                    if(self.Board[Row_Postion_Final + Value_row_int][Column_Postion_Final + Value_col_int] == self.Pieses_Black):
-                        kill_Pieces.kill_pieses_W(self,Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final)
-                        self.Clear_changeturn()
-
-
-
-            if(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_Black and PiesesWhiteBlack.turn == False and Value_Row_Black == 1):
-                self.movement_normal_pieses(Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final,PiesesWhiteBlack.turn)
-                self.Clear_changeturn()
-
-            else:
-                if(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_Black and PiesesWhiteBlack.turn == False and Value_Row_Black == 2):
-                    Value_row_int = int(Value_Row_Black/2)
-                    Value_col_int = int(Value_Col_Black/2)
-
-                    # comer
-                    if(self.Board[Row_Postion_Final + Value_row_int][Column_Postion_Final + Value_col_int]== self.Pieses_White):
-                        kill_Pieces.kill_pieses_B(self,Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final)
-                        self.Clear_changeturn()
-                
-
-
-
-
-            #Queen
-            if(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_Queen_White):
-                self.movement_queen_pieses(Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final,turn)
-            
-                if(self.Board[Row_Postion_Final ][Column_Postion_Final + Value_col_int] == self.Pieses_Black and Value_Row_White == 2 or Value_Row_White == -2 or self.Board[Row_Postion_Final + Value_row_int][Column_Postion_Final + Value_col_int] == self.Pieses_Queen_Black):
-                    Queen_Killer.Queen_Killer_W(Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final)
+                    kill_Pieces.kill_pieses(self,Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final)
                     self.Clear_changeturn()
 
 
+            if(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_Black and PiesesWhiteBlack.turn == False and Value_Row_Pieses == 1):
+                self.movement_normal_pieses(Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final,PiesesWhiteBlack.turn)
+                self.Clear_changeturn()
 
-
-
-
-
+            else:
+                if(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_Black and PiesesWhiteBlack.turn == False and Value_Row_Pieses == 2):
+                    Value_row_int = int(Value_Row_Pieses/2)
+                    Value_col_int = int(Value_Col_Pieses/2)
+                    # comer
+                    kill_Pieces.kill_pieses(self,Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final)
+                    self.Clear_changeturn()
+                
+            #Queen
+            if(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_Queen_White):
+                self.movement_queen_pieses(Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final,PiesesWhiteBlack.turn)
+                Value_row_int = int(Value_Row_Pieses/2)
+                Value_col_int = int(Value_Col_Pieses/2)
+                if(self.Board[Row_Postion_Final + Value_row_int][Column_Postion_Final + Value_col_int] == self.Pieses_Black or self.Board[Row_Postion_Final + Value_row_int][Column_Postion_Final + Value_col_int] == self.Pieses_Queen_Black):
+                    Queen_Killer.Queen_Killer_W(self,Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final)
+                    self.Clear_changeturn()
 
         else:
             print("Invalid Movement, try again")
+
     def presentation(self):
         super().state()
-
 
     def Clear_changeturn(self):
         if(PiesesWhiteBlack.turn == True):
@@ -209,7 +195,6 @@ class PiesesWhiteBlack(DamasChinas):
             PiesesWhiteBlack.turn = True
             print("shift change, white")
             self.see_winer()
-
 
 LPiesesWB = PiesesWhiteBlack()
 LPiesesWB.players()

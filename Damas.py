@@ -2,8 +2,8 @@ class DamasChinas:
     def __init__(self):
         self.Pieses_White = "♟"
         self.Pieses_Black = "♙"
-        self.Pieses_Queen_White = "♔"
-        self.Pieses_Queen_Black = "♚"
+        self.Pieses_Queen_White = "♚"
+        self.Pieses_Queen_Black = "♔"
         self.Board = []
         collumns = "x12345678"
         rows = "xABCDEFGH"
@@ -24,8 +24,9 @@ class DamasChinas:
 
                 self.Board[0][i] = collumns[i]
                 self.Board[j][0] = rows[j]
-        self.Board[6][4] = self.Pieses_White
-        self.Board[8][6] = '◼'
+        self.Board[6][4] = '◼'
+        self.Board[7][5] = self.Pieses_Black
+        self.Board[8][6] = self.Pieses_Queen_White
 
     def state(self):
         for x in self.Board:
