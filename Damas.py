@@ -24,9 +24,13 @@ class DamasChinas:
 
                 self.Board[0][i] = collumns[i]
                 self.Board[j][0] = rows[j]
-        self.Board[6][4] = '◼'
-        self.Board[7][5] = self.Pieses_Black
-        self.Board[8][6] = self.Pieses_Queen_White
+        self.Board[7][7] =  self.Pieses_White
+        self.Board[6][6] =  '◼'
+        self.Board[5][5] =  self.Pieses_White
+        self.Board[4][4] =  '◼'
+        self.Board[3][3] =  self.Pieses_White
+        self.Board[2][2] =  '◼'
+        self.Board[1][1] =  '◼'
 
     def state(self):
         for x in self.Board:

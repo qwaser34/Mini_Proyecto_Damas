@@ -16,6 +16,10 @@ class PiesesWhiteBlack(DamasChinas):
                 self.Board[Row_Postion_Initial][Column_Postion_Initial] = self.Pieses_White
                 self.Board[Row_Postion_Final][Column_Postion_Final] = '◻'
 
+            # elif(self.Row_Postion_Final%2 != 0 and self.Column_Postion_Final%2 == 0 or self.Row_Postion_Final%2 == 0 and self.Column_Postion_Final%2 != 0):
+            #     self.Board[Row_Postion_Initial][Column_Postion_Initial] = self.Pieses_Queen_White
+            #     self.Board[Row_Postion_Final][Column_Postion_Final] = '◻'
+
             else:
                 self.Board[Row_Postion_Initial][Column_Postion_Initial] = '◼'
                 self.Board[Row_Postion_Final][Column_Postion_Final] = self.Pieses_White
@@ -29,6 +33,10 @@ class PiesesWhiteBlack(DamasChinas):
             if(self.Row_Postion_Final%2 != 0 and self.Column_Postion_Final%2 == 0 or self.Row_Postion_Final%2 == 0 and self.Column_Postion_Final%2 != 0):
                 self.Board[Row_Postion_Initial][Column_Postion_Initial] = self.Pieses_Black
                 self.Board[Row_Postion_Final][Column_Postion_Final] = '◻'
+
+            # elif(self.Row_Postion_Final%2 != 0 and self.Column_Postion_Final%2 == 0 or self.Row_Postion_Final%2 == 0 and self.Column_Postion_Final%2 != 0):
+            #     self.Board[Row_Postion_Initial][Column_Postion_Initial] = self.Pieses_Queen_Black
+            #     self.Board[Row_Postion_Final][Column_Postion_Final] = '◻'
             else:    
                 self.Board[Row_Postion_Initial][Column_Postion_Initial] = '◼'
                 self.Board[Row_Postion_Final][Column_Postion_Final] = self.Pieses_Black
@@ -63,13 +71,13 @@ class PiesesWhiteBlack(DamasChinas):
                 self.Board[Row_Postion_Initial][Column_Postion_Initial] = '◼'
                 self.Board[Row_Postion_Final][Column_Postion_Final] = self.Pieses_Queen_White
 
-            elif(self.Board[Row_Postion_Final][Column_Postion_Final] == '◻'):
-                self.Board[Row_Postion_Initial][Column_Postion_Initial] = self.Pieses_Queen_Black
-                self.Board[Row_Postion_Final][Column_Postion_Final] = '◻'
+            elif(self.Board[Row_Postion_Final][Column_Postion_Final] == self.Pieses_White):
+                self.Board[Row_Postion_Initial][Column_Postion_Initial] = self.Pieses_Queen_White
+                self.Board[Row_Postion_Final][Column_Postion_Final] = '◼'
 
-            else:
-                self.Board[Row_Postion_Initial][Column_Postion_Initial] = '◼'
-                self.Board[Row_Postion_Final][Column_Postion_Final] = self.Pieses_Queen_White
+            elif(self.Board[Row_Postion_Final][Column_Postion_Final] == '◻'):
+                self.Board[Row_Postion_Initial][Column_Postion_Initial] = self.Pieses_Queen_White
+                self.Board[Row_Postion_Final][Column_Postion_Final] = '◻'
                 
 
         else: #turn Queen black
@@ -77,6 +85,11 @@ class PiesesWhiteBlack(DamasChinas):
             if(self.Board[Row_Postion_Final][Column_Postion_Final] == '◻'):
                 self.Board[Row_Postion_Initial][Column_Postion_Initial] = self.Pieses_Queen_Black
                 self.Board[Row_Postion_Final][Column_Postion_Final] = '◻'
+
+            elif(self.Board[Row_Postion_Final][Column_Postion_Final] == self.Pieses_Black):
+                self.Board[Row_Postion_Initial][Column_Postion_Initial] = self.Pieses_Queen_Black
+                self.Board[Row_Postion_Final][Column_Postion_Final] = '◼'
+
             else:    
                 self.Board[Row_Postion_Initial][Column_Postion_Initial] = '◼'
                 self.Board[Row_Postion_Final][Column_Postion_Final] = self.Pieses_Queen_Black
@@ -159,11 +172,11 @@ class PiesesWhiteBlack(DamasChinas):
 
             else:
                 if(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_Black and PiesesWhiteBlack.turn == False and Value_Row_Pieses == 2):
-                    Value_row_int = int(Value_Row_Pieses/2)
-                    Value_col_int = int(Value_Col_Pieses/2)
                     # comer
                     kill_Pieces.kill_pieses(self,Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final)
+                    kill_Pieces.kill_function(self, Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final)
                     self.Clear_changeturn()
+                        
                 
             #Queen
             if(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_Queen_White):
@@ -182,14 +195,14 @@ class PiesesWhiteBlack(DamasChinas):
 
     def Clear_changeturn(self):
         if(PiesesWhiteBlack.turn == True):
-            os.system('clear')
+            # os.system('clear')
             self.change_queen()
             self.presentation()
             PiesesWhiteBlack.turn = False
             print("shift change, black")
             self.see_winer()
         elif(PiesesWhiteBlack.turn == False):
-            os.system('clear')
+            # os.system('clear')
             self.change_queen()
             self.presentation()
             PiesesWhiteBlack.turn = True
