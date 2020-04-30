@@ -14,6 +14,6 @@ class Queen_Killer(DamasChinas):
         Value_col_int = int(Value_Col_White/2)
 
         self.Board[Row_Postion_Final + Value_row_int][Column_Postion_Final + Value_col_int] = '◼'
-        self.Board[Row_Postion_Final][Column_Postion_Final] = self.Pieses_Queen_White
+        self.Board[Row_Postion_Final][Column_Postion_Final] = self.Pieses_Queen_Black
         self.Board[Row_Postion_Initial][Column_Postion_Initial] = '◼'
                     
