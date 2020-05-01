@@ -144,18 +144,34 @@ class PiesesWhiteBlack(DamasChinas): #clase
                 self.Clear_changeturn()
 
             elif(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_White and Value_Row_Pieses == -2): #detecta si puede comer
+                
                 # comer
                 kill_Pieces.kill_pieses(self,Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final)# funcion que permite que se coma la contraria
                 self.presentation()
                 #limitar los bordes para que no se salga del rango
                 if(Row_Postion_Final+2 <= 8 and Column_Postion_Final+2 <=8 and Row_Postion_Final-2 >= 0 and Column_Postion_Final-2 >= 0 ):
-                    if(self.Board[Row_Postion_Final + 1][Column_Postion_Final + 1] == self.Pieses_Black and self.Board[Row_Postion_Final + 2][Column_Postion_Final + 2] == '◼' or self.Board[Row_Postion_Final + 1][Column_Postion_Final - 1] == self.Pieses_Black and self.Board[Row_Postion_Final + 2][Column_Postion_Final - 2] == '◼'):
+                    #para comer las normales
+                    if(self.Board[Row_Postion_Final + 1][Column_Postion_Final + 1] == self.Pieses_Black and
+                    self.Board[Row_Postion_Final + 2][Column_Postion_Final + 2] == '◼' or
+                    self.Board[Row_Postion_Final + 1][Column_Postion_Final - 1] == self.Pieses_Black and
+                    self.Board[Row_Postion_Final + 2][Column_Postion_Final - 2] == '◼' or
+                    #para comer tambien lar reinas comtrarias
+                    self.Board[Row_Postion_Final - 1][Column_Postion_Final - 1] == self.Pieses_Queen_Black and
+                    self.Board[Row_Postion_Final - 2][Column_Postion_Final - 2] == '◼' or
+                    self.Board[Row_Postion_Final - 1][Column_Postion_Final + 1] == self.Pieses_Queen_Black and
+                    self.Board[Row_Postion_Final - 2][Column_Postion_Final + 2] == '◼'):
 
                         self.presentation()
+                        #cuando se encuentra una contraria y puede seguir comiendo (Turn = True son para Blancas)
                         PiesesWhiteBlack.turn = True
                         self.movement_pieses2(Row_Final)
-
-                PiesesWhiteBlack.turn = False
+                
+                elif(self.winner()==False):
+                    print("Fin del juego")
+                    
+                #para cambiar de turno
+                else:
+                    PiesesWhiteBlack.turn = False
 
 
             #black------------------
@@ -165,19 +181,33 @@ class PiesesWhiteBlack(DamasChinas): #clase
                 self.Clear_changeturn()
 
             elif(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_Black and PiesesWhiteBlack.turn == False and Value_Row_Pieses == 2):
-                # comer
 
+                # comer
                 kill_Pieces.kill_pieses(self,Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final)
                 self.presentation()
-
+                #limitar los bordes para que no se salga del rango
                 if(Row_Postion_Final+2 <= 8 and Column_Postion_Final+2 <=8 and Row_Postion_Final-2 >= 0 and Column_Postion_Final-2 >= 0 ):
-                    if(self.Board[Row_Postion_Final - 1][Column_Postion_Final - 1] == self.Pieses_White and self.Board[Row_Postion_Final - 2][Column_Postion_Final - 2] == '◼' or self.Board[Row_Postion_Final - 1][Column_Postion_Final + 1] == self.Pieses_White and self.Board[Row_Postion_Final - 2][Column_Postion_Final + 2] == '◼'):
+                    #para comer las normales
+                    if(self.Board[Row_Postion_Final - 1][Column_Postion_Final - 1] == self.Pieses_White and
+                    self.Board[Row_Postion_Final - 2][Column_Postion_Final - 2] == '◼' or
+                    self.Board[Row_Postion_Final - 1][Column_Postion_Final + 1] == self.Pieses_White and
+                    self.Board[Row_Postion_Final - 2][Column_Postion_Final + 2] == '◼' or
+                    #para comer tambien lar reinas comtrarias
+                    self.Board[Row_Postion_Final - 1][Column_Postion_Final - 1] == self.Pieses_Queen_White and
+                    self.Board[Row_Postion_Final - 2][Column_Postion_Final - 2] == '◼' or
+                    self.Board[Row_Postion_Final - 1][Column_Postion_Final + 1] == self.Pieses_Queen_White and
+                    self.Board[Row_Postion_Final - 2][Column_Postion_Final + 2] == '◼'):
 
                         self.presentation()
+                        #cuando se encuentra una contraria y puede seguir comiendo (Turn = False son para Negras)
                         PiesesWhiteBlack.turn = False
                         self.movement_pieses2(Row_Final)
 
-                PiesesWhiteBlack.turn = True
+                elif(self.winner()==False):
+                    print("Fin del juego")
+
+                else:
+                    PiesesWhiteBlack.turn = False
 
             #Queen_white-----------------
             elif(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_Queen_White):
@@ -185,18 +215,62 @@ class PiesesWhiteBlack(DamasChinas): #clase
 
                 if(self.Board[Row_Postion_Final + Value_row_int][Column_Postion_Final + Value_col_int] == self.Pieses_Black or self.Board[Row_Postion_Final + Value_row_int][Column_Postion_Final + Value_col_int] == self.Pieses_Queen_Black):
                     Queen_Killer.Queen_Killer_W(self,Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final)
-                    self.Clear_changeturn()
+                    self.presentation()
+                    if(Row_Postion_Final+2 <= 8 and Column_Postion_Final+2 <=8 and Row_Postion_Final-2 >= 0 and Column_Postion_Final-2 >= 0 ):
+                        if(self.Board[Row_Postion_Final - 1][Column_Postion_Final - 1] == self.Pieses_Black and
+                        self.Board[Row_Postion_Final - 2][Column_Postion_Final - 2] == '◼' or
+                        self.Board[Row_Postion_Final - 1][Column_Postion_Final + 1] == self.Pieses_Black and
+                        self.Board[Row_Postion_Final - 2][Column_Postion_Final + 2] == '◼' or
+                        self.Board[Row_Postion_Final + 1][Column_Postion_Final + 1] == self.Pieses_Black and
+                        self.Board[Row_Postion_Final + 2][Column_Postion_Final + 2] == '◼' or
+                        self.Board[Row_Postion_Final + 1][Column_Postion_Final - 1] == self.Pieses_Black and
+                        self.Board[Row_Postion_Final + 2][Column_Postion_Final - 2] == '◼' or
+                        
+                        self.Board[Row_Postion_Final - 1][Column_Postion_Final - 1] == self.Pieses_Queen_Black and
+                        self.Board[Row_Postion_Final - 2][Column_Postion_Final - 2] == '◼' or
+                        self.Board[Row_Postion_Final - 1][Column_Postion_Final + 1] == self.Pieses_Queen_Black and
+                        self.Board[Row_Postion_Final - 2][Column_Postion_Final + 2] == '◼' or
+                        self.Board[Row_Postion_Final + 1][Column_Postion_Final + 1] == self.Pieses_Queen_Black and
+                        self.Board[Row_Postion_Final + 2][Column_Postion_Final + 2] == '◼' or
+                        self.Board[Row_Postion_Final + 1][Column_Postion_Final - 1] == self.Pieses_Queen_Black and
+                        self.Board[Row_Postion_Final + 2][Column_Postion_Final - 2] == '◼'):
+
+                            self.presentation()
+                            PiesesWhiteBlack.turn = True
+                            self.movement_pieses2(Row_Final)
+
+                    elif(self.winner()==False):
+                        print("Fin del juego")
+
+                    else:
+                        PiesesWhiteBlack.turn = False
 
 
             #Queen_black
             elif(self.Board[Row_Postion_Initial][Column_Postion_Initial] == self.Pieses_Queen_Black):
                 self.movement_queen_pieses(Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final,PiesesWhiteBlack.turn)
-
+                #para comer
                 if(self.Board[Row_Postion_Final + Value_row_int][Column_Postion_Final + Value_col_int] == self.Pieses_White or self.Board[Row_Postion_Final + Value_row_int][Column_Postion_Final + Value_col_int] == self.Pieses_Queen_White):
-                    Queen_Killer.Queen_Killer_W(self,Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final)
+                    Queen_Killer.Queen_Killer_B(self,Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final)
                     self.presentation()
                     if(Row_Postion_Final+2 <= 8 and Column_Postion_Final+2 <=8 and Row_Postion_Final-2 >= 0 and Column_Postion_Final-2 >= 0 ):
-                        if(self.Board[Row_Postion_Final - 1][Column_Postion_Final - 1] == self.Pieses_White and self.Board[Row_Postion_Final - 2][Column_Postion_Final - 2] == '◼' or self.Board[Row_Postion_Final - 1][Column_Postion_Final + 1] == self.Pieses_White and self.Board[Row_Postion_Final - 2][Column_Postion_Final + 2] == '◼' or self.Board[Row_Postion_Final + 1][Column_Postion_Final + 1] == self.Pieses_White and self.Board[Row_Postion_Final + 2][Column_Postion_Final + 2] == '◼' or self.Board[Row_Postion_Final + 1][Column_Postion_Final - 1] == self.Pieses_White and self.Board[Row_Postion_Final + 2][Column_Postion_Final - 2] == '◼'):
+                        if(self.Board[Row_Postion_Final - 1][Column_Postion_Final - 1] == self.Pieses_White and
+                        self.Board[Row_Postion_Final - 2][Column_Postion_Final - 2] == '◼' or
+                        self.Board[Row_Postion_Final - 1][Column_Postion_Final + 1] == self.Pieses_White and
+                        self.Board[Row_Postion_Final - 2][Column_Postion_Final + 2] == '◼' or
+                        self.Board[Row_Postion_Final + 1][Column_Postion_Final + 1] == self.Pieses_White and
+                        self.Board[Row_Postion_Final + 2][Column_Postion_Final + 2] == '◼' or
+                        self.Board[Row_Postion_Final + 1][Column_Postion_Final - 1] == self.Pieses_White and
+                        self.Board[Row_Postion_Final + 2][Column_Postion_Final - 2] == '◼' or
+                        
+                        self.Board[Row_Postion_Final - 1][Column_Postion_Final - 1] == self.Pieses_Queen_White and
+                        self.Board[Row_Postion_Final - 2][Column_Postion_Final - 2] == '◼' or
+                        self.Board[Row_Postion_Final - 1][Column_Postion_Final + 1] == self.Pieses_Queen_White and
+                        self.Board[Row_Postion_Final - 2][Column_Postion_Final + 2] == '◼' or
+                        self.Board[Row_Postion_Final + 1][Column_Postion_Final + 1] == self.Pieses_Queen_White and
+                        self.Board[Row_Postion_Final + 2][Column_Postion_Final + 2] == '◼' or
+                        self.Board[Row_Postion_Final + 1][Column_Postion_Final - 1] == self.Pieses_Queen_White and
+                        self.Board[Row_Postion_Final + 2][Column_Postion_Final - 2] == '◼'):
 
                             self.presentation()
                             PiesesWhiteBlack.turn = False
@@ -248,20 +322,20 @@ class PiesesWhiteBlack(DamasChinas): #clase
     def detect(self):# encontrar piezas
         pieseswhite = [self.Pieses_White,self.Pieses_Queen_White]
         piesesblack = [self.Pieses_Black, self.Pieses_Queen_Black]
+        blanca = False
+        negra = False
         for i in range (1,9):
             for j in range(1,9):
                 # print("gg")
                 if(self.Board[i][j] in pieseswhite):
-                    print("h")
-                    return True
-
+                    blanca = True
                 elif(self.Board[i][j] in piesesblack):
-                    print("j")
-                    return False
+                    negra = True
 
-                elif(self.Board[i][j] in pieseswhite and self.Board[i][j] in piesesblack or self.Board[i][j] not in pieseswhite and self.Board[i][j] not in piesesblack):
-                    return None
-
+        if(blanca and negra): return None
+        elif(blanca): return True
+        elif(negra): return False
+        return "ERROR"
 
     def winner(self):
 
