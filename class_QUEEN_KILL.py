@@ -1,7 +1,7 @@
 from Damas import DamasChinas
 class Queen_Killer(DamasChinas):
     
-    def Queen_Killer_W(self, Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final):
+    def queen_killer_w(self, Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final):
         #para que coman las reinas blancas
         self.Row_Postion_Initial = Row_Postion_Initial
         self.Column_Postion_Initial = Column_Postion_Initial
@@ -17,8 +17,7 @@ class Queen_Killer(DamasChinas):
         self.Board[Row_Postion_Final][Column_Postion_Final] = self.Pieses_Queen_White
         self.Board[Row_Postion_Initial][Column_Postion_Initial] = '◼'
 
-
-    def Queen_Killer_B(self, Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final):
+    def queen_killer_b(self, Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final):
         #para que coman las reinas negras
         self.Row_Postion_Initial = Row_Postion_Initial
         self.Column_Postion_Initial = Column_Postion_Initial
