@@ -1,22 +1,26 @@
-from Damas import DamasChinas
-class kill_Pieces(DamasChinas):
+from Damas import Damas
+class killPieces(Damas):
     
-    def kill_pieses(self, Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final):
+    def kill_pieses(self, row_postion_initial, column_postion_initial, row_postion_final, column_postion_final):
         #izquierda arriba a derecha abajo
-        self.Row_Postion_Initial = Row_Postion_Initial
-        self.Column_Postion_Initial = Column_Postion_Initial
-        self.Row_Postion_Final = Row_Postion_Final
-        self.Column_Postion_Final = Column_Postion_Final
+        self.row_postion_initial = row_postion_initial
+        self.column_postion_initial = column_postion_initial
+        self.row_postion_final = row_postion_final
+        self.column_postion_final = column_postion_final
 
-        Value_Row_Pieses = (Row_Postion_Initial - Row_Postion_Final)
-        Value_Col_Pieses = (Column_Postion_Initial - Column_Postion_Final)
+        Value_Row_Pieses = (row_postion_initial - row_postion_final)
+        Value_Col_Pieses = (column_postion_initial - column_postion_final)
         Value_row_int = int(Value_Row_Pieses/2)
         Value_col_int = int(Value_Col_Pieses/2)
 
-        if(self.Board[Row_Postion_Final + Value_row_int][Column_Postion_Final + Value_col_int] != self.Board[Row_Postion_Initial][Column_Postion_Initial]):
-            self.Board[Row_Postion_Final + Value_row_int][Column_Postion_Final + Value_col_int] = '◼'
-            self.Board[Row_Postion_Final][Column_Postion_Final] = self.Board[Row_Postion_Initial][Column_Postion_Initial]
-            self.Board[Row_Postion_Initial][Column_Postion_Initial] = '◼'
+        postion_final_row_int = row_postion_final + Value_row_int
+        postion_final_col_int = column_postion_final + Value_col_int
+
+
+        if(self.board[postion_final_row_int][postion_final_col_int] != self.board[row_postion_initial][column_postion_initial]):
+            self.board[postion_final_row_int][postion_final_col_int] = '◼'
+            self.board[row_postion_final][column_postion_final] = self.board[row_postion_initial][column_postion_initial]
+            self.board[row_postion_initial][column_postion_initial] = '◼'
 
 
    

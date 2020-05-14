@@ -1,34 +1,40 @@
-from Damas import DamasChinas
-class Queen_Killer(DamasChinas):
+from Damas import Damas
+class QueenKiller(Damas):
     
-    def queen_killer_w(self, Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final):
+    def queen_killer_w(self, row_postion_initial, column_postion_initial, row_postion_final, column_postion_final):
         #para que coman las reinas blancas
-        self.Row_Postion_Initial = Row_Postion_Initial
-        self.Column_Postion_Initial = Column_Postion_Initial
-        self.Row_Postion_Final = Row_Postion_Final
-        self.Column_Postion_Final = Column_Postion_Final
+        self.row_postion_initial = row_postion_initial
+        self.column_postion_initial = column_postion_initial
+        self.row_postion_final = row_postion_final
+        self.column_postion_final = column_postion_final
 
-        Value_Row_White = (Row_Postion_Initial - Row_Postion_Final)
-        Value_Col_White = (Column_Postion_Initial - Column_Postion_Final)
+        Value_Row_White = (row_postion_initial - row_postion_final)
+        Value_Col_White = (column_postion_initial - column_postion_final)
         Value_row_int = int(Value_Row_White/2)
         Value_col_int = int(Value_Col_White/2)
 
-        self.Board[Row_Postion_Final + Value_row_int][Column_Postion_Final + Value_col_int] = '◼'
-        self.Board[Row_Postion_Final][Column_Postion_Final] = self.Pieses_Queen_White
-        self.Board[Row_Postion_Initial][Column_Postion_Initial] = '◼'
+        postion_final_row_int = row_postion_final + Value_row_int
+        postion_final_col_int = column_postion_final + Value_col_int
 
-    def queen_killer_b(self, Row_Postion_Initial,Column_Postion_Initial,Row_Postion_Final,Column_Postion_Final):
+        self.board[postion_final_row_int][postion_final_col_int] = '◼'
+        self.board[row_postion_final][column_postion_final] = self.pieses_queen_white
+        self.board[row_postion_initial][column_postion_initial] = '◼'
+
+    def queen_killer_b(self, row_postion_initial, column_postion_initial, row_postion_final, column_postion_final):
         #para que coman las reinas negras
-        self.Row_Postion_Initial = Row_Postion_Initial
-        self.Column_Postion_Initial = Column_Postion_Initial
-        self.Row_Postion_Final = Row_Postion_Final
-        self.Column_Postion_Final = Column_Postion_Final
+        self.row_postion_initial = row_postion_initial
+        self.column_postion_initial = column_postion_initial
+        self.row_postion_final = row_postion_final
+        self.column_postion_final = column_postion_final
 
-        Value_Row_White = (Row_Postion_Initial - Row_Postion_Final)
-        Value_Col_White = (Column_Postion_Initial - Column_Postion_Final)
+        Value_Row_White = (row_postion_initial - row_postion_final)
+        Value_Col_White = (column_postion_initial - column_postion_final)
         Value_row_int = int(Value_Row_White/2)
         Value_col_int = int(Value_Col_White/2)
 
-        self.Board[Row_Postion_Final + Value_row_int][Column_Postion_Final + Value_col_int] = '◼'
-        self.Board[Row_Postion_Final][Column_Postion_Final] = self.Pieses_Queen_Black
-        self.Board[Row_Postion_Initial][Column_Postion_Initial] = '◼'
+        postion_final_row_int = row_postion_final + Value_row_int
+        postion_final_col_int = column_postion_final + Value_col_int
+
+        self.board[postion_final_row_int][postion_final_col_int] = '◼'
+        self.board[row_postion_final][column_postion_final] = self.pieses_queen_black
+        self.board[row_postion_initial][column_postion_initial] = '◼'

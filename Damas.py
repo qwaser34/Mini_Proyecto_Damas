@@ -1,35 +1,35 @@
-class DamasChinas:
-    def __init__(self):
+class Damas:
+    def __init__(self):# lo que siemre aparecera
         # definicion de piezas
-        self.Pieses_White = "♟"
-        self.Pieses_Black = "♙"
-        self.Pieses_Queen_White = "♚"
-        self.Pieses_Queen_Black = "♔"
-        self.Board = []
+        self.pieses_white = "♟"
+        self.pieses_black = "♙"
+        self.pieses_queen_white = "♚"
+        self.pieses_queen_black = "♔"
+        self.board = []
         collumns = "x12345678"
         rows = "xABCDEFGH"
         # creacion de tablero
         for i in range(9):
-            self.Board.append(['']*9)
+            self.board.append(['']*9)
         # colocacion de fichas, cuadros negros y blancos
         for i in range(0,9):
             for j in range(0,9):
                 if((i+j)%2 == 0):
-                    self.Board[i][j] = '◼'
+                    self.board[i][j] = '◼'
                     if (i > 0 and i < 4):
                         
-                        self.Board[i][j] = self.Pieses_White
+                        self.board[i][j] = self.pieses_white
                     if (i > 5):
-                        self.Board[i][j] = self.Pieses_Black
+                        self.board[i][j] = self.pieses_black
                 else:
-                    self.Board[i][j] = '◻'
+                    self.board[i][j] = '◻'
 
-                self.Board[0][i] = collumns[i]
-                self.Board[j][0] = rows[j]
+                self.board[0][i] = collumns[i]
+                self.board[j][0] = rows[j]
 
 
     def state(self):#recorrer el tablero y mostrar todo
-        for x in self.Board:
+        for x in self.board:
             print(x)
 
 
